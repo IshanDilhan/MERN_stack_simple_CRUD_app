@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-//const app = require('./app');
+//const app = require('./app'); no need
 const port = 3001;
 const host = 'localhost';
 const mongoose = require('mongoose');
