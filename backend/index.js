@@ -7,6 +7,7 @@ const host = 'localhost';
 const mongoose = require('mongoose');
 const router = require('./router');
 
+
 app.use(cors()); // to access cross origin resouce policy
 app.use(express.json());
 const uri = 'mongodb+srv://ishanwaruna20:ishan%404524@cluster0.fxiyukk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';

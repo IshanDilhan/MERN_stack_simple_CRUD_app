@@ -1,6 +1,6 @@
 import { Button, Paper, TableContainer, Table, TableCell, TableHead, TableRow, TableBody } from '@mui/material';
 
-const UsersTable = ({ rows }) => { //here u can use props too
+const UsersTable = ({ rows, selectedUser, deleteUser }) => {
    return (
       <TableContainer component={ Paper }>
          <Table>
@@ -13,7 +13,6 @@ const UsersTable = ({ rows }) => { //here u can use props too
             </TableHead>
             <TableBody>
                {
-                  //map can onlu use with arrays
                   rows.length > 0 ? rows.map(row => (
                      <TableRow key={ row.id } sx={{ '&:last-child td, &:last-child th': { border: 0 }}}>
                         <TableCell component='th' scope='row'>{ row.id }</TableCell>
@@ -21,13 +20,13 @@ const UsersTable = ({ rows }) => { //here u can use props too
                         <TableCell>
                            <Button
                               sx={{ margin: '0px 10px' }}
-                             // onClick={() => selectedUser({id: row.id, name: row.name })}
+                              onClick={() => selectedUser({id: row.id, name: row.name })}
                            >
                               Update
                            </Button>
                            <Button
                               sx={{ margin: '0px 10px' }}
-                             // onClick={() => deleteUser({ id: row.id })}
+                              onClick={() => deleteUser({ id: row.id })}
                            >
                               Delete
                            </Button>

@@ -1,10 +1,27 @@
-import React, { useState } from 'react'
 import { Grid, Input, Typography, Button } from '@mui/material';
-const UserForm = () => {
-    const [name, setName] = useState('');
-    const [id, setId] = useState(0);
+import { useEffect, useState } from 'react';
+
+const UserForm = ({ addUser, updateUser, submitted, data, isEdit }) => {
+
+  const [ id, setId ] = useState(0);
+  const [ name, setname ] = useState('');
+
+  useEffect(() => {
+    if (!submitted) {
+      setId(0);
+      setname('');
+    }
+  }, [submitted]);
+
+  useEffect(() => {
+    if (data?.id && data.id !== 0 ) {
+      setId(data.id);
+      setname(data.name);
+    }
+  }, [ data ]);
+
   return (
-<Grid
+    <Grid
       container
       spacing={2}
       sx={{
@@ -62,7 +79,7 @@ const UserForm = () => {
           name='name'
           sx={{ width: '400px' }}
           value={ name }
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setname(e.target.value)}
         />
       </Grid>
 
@@ -79,14 +96,14 @@ const UserForm = () => {
             backgroundColor: '#00c6e6'
           }
         }}
-        //onClick = {() => isEdit ? updateUser({ id, name }) : addUser({ id, name })}
+        onClick = {() => isEdit ? updateUser({ id, name }) : addUser({ id, name })}//if keys and id equal then can get same name ex- id:id  this can ge only id
       >
-        
-           ADD
-        
+        {
+          isEdit ? 'UPDATE' : 'ADD'
+        }
       </Button>
     </Grid>
-  )
-}
+  );
+};
 
-export default UserForm
+export default UserForm;
